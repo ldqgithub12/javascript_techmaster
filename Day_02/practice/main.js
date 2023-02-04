@@ -170,14 +170,52 @@ let findByName = (arr)=>{
 console.log(findByName(products))
 
 // 6. Thêm 1 sản phẩm bất kỳ vào trong mảng product
-function addNewProduct(product){
-    products.push({name,price,brand,count}=product)
+let addNewProduct = (product)=>{
+    products.push(product)
+    return products
 }
-
+let newProduct ={
+    name: "New Product",
+    price: 19500000,
+    brand: "Samsung",
+    count: 3,
+}
+console.log(addNewProduct(newProduct))
 // 7. Xóa tất cả sản phẩm của thương hiệu "Samsung" trong giỏ hàng
-
+// let deleteSamsung = ()=>{
+//     products.forEach(pro=>{
+//         if(pro.brand == "Samsung"){
+//             delete pro.name;
+//             delete pro.price;
+//             delete pro.brand;
+//             delete pro.count;
+//         }
+//     }) 
+//     return products;
+// }
+// console.log(deleteSamsung())
 // 8. Sắp xếp giỏ hàng theo price tăng dần
 
+let sortProductIncrese = ()=>{
+    return products.sort(function(pro1,pro2){
+        return pro1.price - pro2.price;
+    })
+}
+console.log(sortProductIncrese())
 // 9. Sắp xếp giỏ hàng theo count giảm dần
-
+// let sortProductDecrease = ()=>{
+//     return products.sort(function(pro1,pro2){
+//         return pro2.price - pro1.price;
+//     })
+// }
+// console.log(sortProductDecrease())
 // 10. Lấy ra 2 sản phẩm bất kỳ trong giỏ hàng
+let randomTwoProduct=()=>{
+    const randomArr =[];
+    for(i = 0;i<2;i++){
+        let index = Math.floor(Math.random()*products.length);
+        randomArr.push(products[index])
+    }
+    return randomArr;
+}
+console.log(randomTwoProduct())
