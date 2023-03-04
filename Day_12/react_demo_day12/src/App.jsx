@@ -15,7 +15,7 @@ function App() {
       {/* <Counter></Counter> */}
       {/* {show && <Counter/>}
       <button onClick={toggle}>Toggle</button> */}
-      <Register></Register>
+      <Register />
     </>
   )
 }
