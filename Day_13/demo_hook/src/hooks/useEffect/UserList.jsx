@@ -4,12 +4,18 @@ function UserList() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch("http://localhost:8080/api/users/");
+      // let rs = await axios.get("http://localhost:8080/api/users/");
+      // console.log(rs)
       const dataJson = await data.json();
-      console.log(dataJson);
       setData(dataJson);
     };
     fetchData();
   }, []);
+  const deleteUser = async (id)=>{
+    const newUserList = data.filter(p=>p.id !== id);
+    setData(newUserList)
+    const response = await fetch(`http://localhost:8080/api/users/${id}`,{method:'DELETE'})
+  }
 
   return (
     <div className="container mt-5 mb-5">
@@ -54,7 +60,7 @@ function UserList() {
                       <a href="./detail.html?id=2" className="btn btn-success">
                         Xem chi tiết
                       </a>
-                      <button className="btn btn-danger">Xóa</button>
+                      <button className="btn btn-danger" onClick={()=>deleteUser(item.id)}>Xóa</button>
                     </td>
                   </tr>
                 ))}
