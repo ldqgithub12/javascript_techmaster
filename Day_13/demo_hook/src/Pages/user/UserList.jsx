@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 function UserList() {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -11,11 +12,13 @@ function UserList() {
     };
     fetchData();
   }, []);
-  const deleteUser = async (id)=>{
-    const newUserList = data.filter(p=>p.id !== id);
-    setData(newUserList)
-    const response = await fetch(`http://localhost:8080/api/users/${id}`,{method:'DELETE'})
-  }
+  const deleteUser = async (id) => {
+    const newUserList = data.filter((p) => p.id !== id);
+    setData(newUserList);
+    const response = await fetch(`http://localhost:8080/api/users/${id}`, {
+      method: "DELETE",
+    });
+  };
 
   return (
     <div className="container mt-5 mb-5">
@@ -24,9 +27,9 @@ function UserList() {
       <div className="row justify-content-center">
         <div className="col-md-10">
           <div className="d-flex justify-content-between align-items-center mt-5 mb-4">
-            <a href="./create.html" className="btn btn-warning">
+            <Link to={"./create"} className="btn btn-warning">
               Tạo user
-            </a>
+            </Link>
             <input
               type="text"
               id="search"
@@ -57,10 +60,18 @@ function UserList() {
                     <td>{item.phone}</td>
                     <td>{item.address}</td>
                     <td>
-                      <a href="./detail.html?id=2" className="btn btn-success">
+                      <Link
+                        to={`/users/${item.id}`}
+                        className="btn btn-success"
+                      >
                         Xem chi tiết
-                      </a>
-                      <button className="btn btn-danger" onClick={()=>deleteUser(item.id)}>Xóa</button>
+                      </Link>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => deleteUser(item.id)}
+                      >
+                        Xóa
+                      </button>
                     </td>
                   </tr>
                 ))}
