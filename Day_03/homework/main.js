@@ -8,18 +8,26 @@ let colors = [
 let curColor = [...colors];
 const boxElement = document.querySelector(".boxes")
 const pointerElement = document.querySelector(".points")
-const btnElement = document.querySelector(".btn")
+const btnElement = document.querySelector("#btn")
 
-const randomBox = arr =>{
+const randomBox = arr => {
     boxElement.innerHTML = "";
     let html = "";
-    arr.forEach(color =>{
-        html += `<div class="box" style="background-color: ${color}"></div>`
+    arr.forEach((color, index) => {
+        html += `<div 
+        class="box"
+        style="background-color: ${color}"
+        onclick = "removeBox(${index})"
+        ></div>`
     })
     boxElement.innerHTML = html;
 }
-btnElement.addEventListener("click",()=>{
-    curColor = [...curColor,...colors]
+btnElement.addEventListener("click", () => {
+    curColor = [...curColor, ...colors]
     randomBox(curColor);
 })
-randomBox(colors)
+const removeBox = index => {
+    curColor.splice(index, 1);
+    randomBox(curColor);
+}
+randomBox(curColor)
