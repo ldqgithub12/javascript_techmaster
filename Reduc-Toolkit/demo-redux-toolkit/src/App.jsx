@@ -17,18 +17,12 @@ function App() {
   return (
     <>
       <Routes>
-        <Route element={<Layout></Layout>}>
+        <Route element={<Layout />}>
           <Route path="/khoa-hoc">
-            <Route index element={<ListCourse></ListCourse>}></Route>
-            <Route
-              path="online"
-              element={<OnlineCourse></OnlineCourse>}
-            ></Route>
-            <Route path="onlab" element={<OnlabCourse></OnlabCourse>}></Route>
-            <Route
-              path=":courseId"
-              element={<CourseDetail></CourseDetail>}
-            ></Route>
+            <Route index element={<ListCourse />} />
+            <Route path="online" element={<OnlineCourse />} />
+            <Route path="onlab" element={<OnlabCourse />} />
+            <Route path=":courseId" element={<CourseDetail />} />
           </Route>
         </Route>
       </Routes>

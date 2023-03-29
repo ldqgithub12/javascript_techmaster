@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -15,18 +16,18 @@ function Header() {
           </div>
           <div className="w-100 d-flex justify-content-between align-items-center">
             <div className="menu">
-              <a
+              <Link
+                to={"/khoa-hoc/onlab"}
                 className="text-white text-uppercase ms-5"
-                href="./course-onlab-list.html"
               >
                 Phòng lab
-              </a>
-              <a
+              </Link>
+              <Link
+                to={"/khoa-hoc/online"}
                 className="text-white text-uppercase ms-3"
-                href="./course-online-list.html"
               >
                 Trực tuyến
-              </a>
+              </Link>
             </div>
             <div className="cart">
               <a className="text-white position-relative" href="/gio-hang">
