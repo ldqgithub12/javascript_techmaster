@@ -21,21 +21,18 @@ function ListCourse() {
     <div className="course-list mt-4 mb-4">
       <div className="container">
         <div className="mb-4">
-          <a
-            href="./course-create.html"
-            className="btn-custom btn-create-course"
-          >
+          <Link to={"create"} className="btn-custom btn-create-course">
             <span>
               <i className="fa-solid fa-plus"></i>
             </span>
             Tạo khóa học
-          </a>
-          <a href="./course-list.html" className="btn-custom btn-refresh">
+          </Link>
+          <Link to={"create"} className="btn-custom btn-refresh">
             <span>
               <i className="fa-solid fa-arrow-rotate-right"></i>
             </span>
             Refresh
-          </a>
+          </Link>
         </div>
 
         <div className="course-list-inner p-2">
