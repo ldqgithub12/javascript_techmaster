@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useGetAllBlogsQuery } from "../../app/services/blogsServices";
+import {
+  useGetAllBlogsQuery,
+  useGetTopTagQuery,
+} from "../../app/services/blogsServices";
 
 function HomePage() {
   const { data, isLoading, isError, error } = useGetAllBlogsQuery();
-  console.log(data);
+  const { data: topcate } = useGetTopTagQuery();
   if (isLoading) {
     return <h2>Loading ...</h2>;
   }
@@ -28,16 +31,18 @@ function HomePage() {
         </h1>
       </header>
       <ul className="terms-tags top-tags">
-        <li>
-          <Link to={"/categories/java"}>
-            Java
-            <sup>
-              <strong>
-                <sup>9</sup>
-              </strong>
-            </sup>
-          </Link>
-        </li>
+        {topcate?.map((c, index) => (
+          <li key={c.id}>
+            <Link to={`/categories/${c.name}`}>
+              {c.name}
+              <sup>
+                <strong>
+                  <sup>{c.used}</sup>
+                </strong>
+              </sup>
+            </Link>
+          </li>
+        ))}
       </ul>
       {data.content.map((c, index) => (
         <article className="post-entry" key={c.id}>

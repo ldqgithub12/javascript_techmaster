@@ -9,7 +9,7 @@ function CategoryDetail() {
   return (
     <main className="main">
       <header className="entry-header">
-        <h1 style={{ marginBottom: "1rem" }}>Tag : Java</h1>
+        <h1 style={{ marginBottom: "1rem" }}>Tag : {name}</h1>
       </header>
       {data?.map((c, index) => (
         <article className="post-entry" key={c.id}>

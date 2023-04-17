@@ -11,12 +11,16 @@ export const blogApi = createApi({
         }),
         findBlogByName: builder.query({
             query: (name) => `search?name=${name}`,
-        })
+        }),
+        getTopTag:builder.query({
+            query: () => "/category-top/top3",
+        }),
     }),
 });
 
 export const {
     useGetAllBlogsQuery,
     useGetBlogDetailQuery,
-    useFindBlogByNameQuery // use + end_point + type (query/mutation)
+    useFindBlogByNameQuery,
+    useGetTopTagQuery // use + end_point + type (query/mutation)
 } = blogApi;
