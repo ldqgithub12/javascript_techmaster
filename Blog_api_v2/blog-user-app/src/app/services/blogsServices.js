@@ -15,6 +15,9 @@ export const blogApi = createApi({
         getTopTag:builder.query({
             query: () => "/category-top/top3",
         }),
+        getBlogComment:builder.query({
+            query: (id) => `/comment/${id}`,
+        }),
     }),
 });
 
@@ -22,5 +25,6 @@ export const {
     useGetAllBlogsQuery,
     useGetBlogDetailQuery,
     useFindBlogByNameQuery,
-    useGetTopTagQuery // use + end_point + type (query/mutation)
+    useGetTopTagQuery,
+    useGetBlogCommentQuery // use + end_point + type (query/mutation)
 } = blogApi;

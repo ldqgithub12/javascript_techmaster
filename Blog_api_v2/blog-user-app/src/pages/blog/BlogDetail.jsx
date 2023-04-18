@@ -1,12 +1,32 @@
 import React from "react";
-import { useGetBlogDetailQuery } from "../../app/services/blogsServices";
+import {
+  useGetBlogCommentQuery,
+  useGetBlogDetailQuery,
+} from "../../app/services/blogsServices";
 import { Link, useParams } from "react-router-dom";
 
 function BlogDetail() {
   const { blogId, blogSlug } = useParams();
   const { data } = useGetBlogDetailQuery({ blogId, blogSlug });
-  console.log(blogId);
-  console.log(blogSlug);
+  const { data: commentData } = useGetBlogCommentQuery(blogId);
+  console.log(commentData);
+  const commentBox = {
+    paddingLeft: "20px",
+    borderTop: "black solid 1px",
+    marginTop: "5px",
+    padding: "15px",
+  };
+  const userNameCss = {
+    fontWeight: "bold",
+    fontSize: "15px",
+  };
+  const dateCss = {
+    fontWeight: "300",
+    fontSize: "10px",
+  };
+  const commentCss = {
+    fontSize: "13px",
+  };
   return (
     <main className="main">
       <article className="post-single">
@@ -20,6 +40,13 @@ function BlogDetail() {
           <p>{data?.description}</p>
         </div>
       </article>
+      {commentData?.map((c, index) => (
+        <div style={commentBox}>
+          <p style={userNameCss}>{c.username}</p>
+          <p style={dateCss}>{c.createdAt}</p>
+          <p style={commentCss}>{c.comment}</p>
+        </div>
+      ))}
     </main>
   );
 }
