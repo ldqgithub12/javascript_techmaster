@@ -4,7 +4,7 @@ export const blogApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8080/api/v1/public" }),
     endpoints: (builder) => ({
         getAllBlogs: builder.query({
-            query: () => "blogs",
+            query: ({page,pageSize}={page : 0, pageSize : 5}) => `blogs?page=${page}&pageSize=${pageSize}`,
         }),
         getBlogDetail: builder.query({
             query: ({blogId,blogSlug}) => `blogs/${blogId}/${blogSlug}`,

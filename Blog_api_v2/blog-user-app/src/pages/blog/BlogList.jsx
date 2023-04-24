@@ -1,19 +1,29 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import {
   useGetAllBlogsQuery,
   useGetTopTagQuery,
 } from "../../app/services/blogsServices";
 
-function HomePage() {
-  const { data, isLoading, isError, error } = useGetAllBlogsQuery();
+function BlogList() {
+  const navigate = useNavigate();
+  const { page } = useParams();
+  const { data, isLoading, isError, error } = useGetAllBlogsQuery({
+    page: page,
+    pageSize: 5,
+  });
   const { data: topcate } = useGetTopTagQuery();
+  console.log(page);
+
   if (isLoading) {
     return <h2>Loading ...</h2>;
   }
 
   if (isError) {
     return <h2>Error : {error}</h2>;
+  }
+  if (Number(page) === 0) {
+    navigate("/");
   }
   return (
     <main className="main">
@@ -64,8 +74,13 @@ function HomePage() {
       ))}
       <footer className="page-footer">
         <nav className="pagination">
+          {!data.first && (
+            <Link className="prev" to={`/page/${+page - 1}`}>
+              Trang trước
+            </Link>
+          )}
           {!data.last && (
-            <Link className="next" to={`/page/${+0 + 1}`}>
+            <Link className="next" to={`/page/${+page + 1}`}>
               Trang tiếp theo
             </Link>
           )}
@@ -75,4 +90,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default BlogList;
